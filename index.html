@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="noughts-and-crosses.png">
     <link rel="stylesheet" href="./styles.css">
-    <!-- <script defer src="./script.js"></script> -->
+    <script defer src="./script.js"></script>
     <title>Tic Tac Toe</title>
 </head>
 <body>
@@ -27,49 +27,30 @@
                 <svg id="o-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="0.4in" height="0.4in">
                     <circle cx="50" cy="50" r="40" fill="none" stroke="#FFA400" stroke-width="20"/>
                     <!-- #40FFD0 -->
-                </svg>
-                
-                  
-                  
+                </svg> 
             </div>
 
             <div id="turn">X Turn</div>
 
-            <button>Restart</button>
+            <button id="restart">Restart</button>
         </div>
 
         <div id="main-board">
-            <div class="row" id="1">
-                <div class="cell">1</div>
-                <div class="cell">2</div>
-                <div class="cell">3</div>
-            </div>
             
-            <div class="row" id="2">
-                <div class="cell">4</div>
-                <div class="cell">5</div>
-                <div class="cell">6</div>
-            </div>
-            
-            <div class="row" id="3">
-                <div class="cell">7</div>
-                <div class="cell">8</div>
-                <div class="cell">9</div>
-            </div>
         </div>
 
         <div id="counter">
             <div id="player-container-x">
                 <div id="player-x">Player X</div>
-                <div class="player-x-score">0</div>
+                <div id="x-score">0</div>
             </div>
             <div id="player-container-ties">
                 <div id="player-x">Ties</div>
-                <div class="ties-score">0</div>
+                <div id="ties-score">0</div>
             </div>
             <div id="player-container-o">
                 <div id="player-x">Player O</div>
-                <div class="player-x-score">0</div>
+                <div id="o-score">0</div>
             </div>
         </div>
     </div>
