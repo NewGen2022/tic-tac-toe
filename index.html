@@ -3,10 +3,75 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./script.js"></script>
+    <link rel="icon" type="image/png" href="noughts-and-crosses.png">
+    <link rel="stylesheet" href="./styles.css">
+    <!-- <script defer src="./script.js"></script> -->
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    
+    <div id="main">
+        <div id="header">
+            <div class="images">
+                <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="0.5in" height="0.5in" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 2.33333 2.33333" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                     <style type="text/css">
+                       .fil0 {fill:#022A32}
+                     </style>
+                    </defs>
+                    <g id="Layer_x0020_1">
+                     <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                     <path class="fil0" d="M1.78195 2.01984c-0.0637795,0 -0.123575,-0.0246772 -0.168386,-0.0695l-0.446902 -0.44687 -0.446886 0.446886c-0.0448268,0.0448307 -0.104626,0.0695 -0.168406,0.0695 -0.0637795,0 -0.123591,-0.0246772 -0.168402,-0.0695 -0.0928465,-0.0928583 -0.0928465,-0.243941 0,-0.336803l0.446902 -0.446886 -0.446902 -0.446886c-0.044811,-0.0448268 -0.0695,-0.104634 -0.0695,-0.168402 0,-0.0637717 0.024689,-0.123575 0.0695,-0.168402 0.044811,-0.044815 0.104622,-0.0695 0.168386,-0.0695 0.0637795,0 0.123594,0.024685 0.168406,0.0695l0.446902 0.446886 0.446894 -0.446886c0.044811,-0.044815 0.10461,-0.0695 0.168406,-0.0695 0.0637795,0 0.123575,0.024685 0.168386,0.0695 0.0928622,0.0928583 0.0928622,0.243933 0,0.336787l-0.446882 0.446902 0.446886 0.446886c0.0928622,0.0928622 0.0928622,0.243945 0,0.336803 -0.0448268,0.044815 -0.104638,0.0694843 -0.168402,0.0694843z" id="id_102" style="fill: rgb(64, 255, 208);"></path>
+                    </g>
+                </svg>
+
+                <svg id="o-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="0.4in" height="0.4in">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#FFA400" stroke-width="20"/>
+                    <!-- #40FFD0 -->
+                </svg>
+                
+                  
+                  
+            </div>
+
+            <div id="turn">X Turn</div>
+
+            <button>Restart</button>
+        </div>
+
+        <div id="main-board">
+            <div class="row" id="1">
+                <div class="cell">1</div>
+                <div class="cell">2</div>
+                <div class="cell">3</div>
+            </div>
+            
+            <div class="row" id="2">
+                <div class="cell">4</div>
+                <div class="cell">5</div>
+                <div class="cell">6</div>
+            </div>
+            
+            <div class="row" id="3">
+                <div class="cell">7</div>
+                <div class="cell">8</div>
+                <div class="cell">9</div>
+            </div>
+        </div>
+
+        <div id="counter">
+            <div id="player-container-x">
+                <div id="player-x">Player X</div>
+                <div class="player-x-score">0</div>
+            </div>
+            <div id="player-container-ties">
+                <div id="player-x">Ties</div>
+                <div class="ties-score">0</div>
+            </div>
+            <div id="player-container-o">
+                <div id="player-x">Player O</div>
+                <div class="player-x-score">0</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
