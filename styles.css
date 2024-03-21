@@ -9,10 +9,13 @@ body{
     box-sizing: border-box;
 }
 
-button[id='restart']{
+button{
     font-family: Poppins, Arial, Helvetica, sans-serif;
     font-weight: 700;
     font-size: 16px;
+}
+
+button[id='restart'], button[id='quit']{
     border-radius: 7px;
     border: none;
     padding: 7px 20px;
@@ -20,19 +23,120 @@ button[id='restart']{
     box-shadow: 0 0 5px #cfcfcf;
     cursor: pointer;
 }
-button[id='restart']:hover{
+button[id='restart']:hover, button[id='quit']:hover{
     transform: scale(1.05);
     background-color: #ffffff;
     box-shadow: 0 0 5px #eefffa;
 }
-button[id='restart']:active{
+button[id='restart']:active, button[id='quit']:active{
     transform: scale(0.95);
     
     background-color: #b2c1bc;
 }
 
-#main{
+#players-creation{
     display: flex;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#text{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+#choose{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0 40px; 
+    padding: 30px 40px 50px 40px;
+    background-color: #00433e;
+    box-shadow: 0 3px 5px #000000;
+    border-radius: 10px;
+}
+#choose-mark{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #003430;
+    border-radius: 10px;
+    padding: 10px 15px;
+}
+#choose-mark div {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+#choose-mark svg{
+    padding: 10px 40px; /* Adjust the padding value as needed */
+}
+#choose span{
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#players-names{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+#players-names input{
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding: 8px;
+    background-color: #e0e0e0;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    cursor: pointer;
+}
+#players-names input::placeholder{
+    color: rgb(172, 172, 172);
+}
+#players-names input:hover{
+    box-shadow: 0 0 5px #fff;
+}
+
+.selected {
+    border-radius: 10px;
+    background-color: #515151;
+    transition: transform 2.3s ease-in-out;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+form button{
+    border: none;
+    width: 40%;
+    padding: 20px 30px;
+    border-radius: 10px;
+    background-color: rgb(253, 181, 0);
+    box-shadow: 0 3px 5px #000000;
+    cursor: pointer;
+}
+form button:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #eca900;
+}
+
+#main{
+    display: none;
     flex-direction: column;
     justify-content: center;
 }
@@ -41,10 +145,13 @@ button[id='restart']:active{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    margin: 40px 10px;
+    margin: 40px 0px 40px 30px;
     font-weight: 600;
-    margin-left: 30px;
-    gap: 15px;
+}
+
+#header-buttons{
+    display: flex;
+    gap: 30px;
 }
 
 .images{
@@ -59,6 +166,7 @@ button[id='restart']:active{
     padding: 7px 36px;
     border-radius: 5px;
     box-shadow: 0 3px 5px #000000;
+    margin-left: 6vw;
 }
 
 #main-board{
@@ -94,7 +202,7 @@ button[id='restart']:active{
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-top: 10vh;
+    margin-top: 7vh;
 }
 
 #player-container-x, #player-container-ties, #player-container-o{
@@ -131,23 +239,21 @@ button[id='restart']:active{
         gap: 10px;
     }
 
-    button[id='restart']{
+    button[id='restart'], button[id='quit']{
         font-size: 12px;
         padding: 4px 17px;
     }
 
     #turn{
-        padding: 4px 25px;
+        padding: 4px 15px;
         font-size: 12px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
-    #x-icon{
+    #x-icon, #o-icon{
         width: 30px;
         height: 30px;
-    }
-    #o-icon{
-        width: 27px;
-        height: 27px;
     }
 
     #counter{
@@ -157,5 +263,11 @@ button[id='restart']:active{
     #player-container-x, #player-container-ties, #player-container-o{
         padding: 8px 25px;
         font-size: 10px;
+    }
+
+    #header-buttons{
+        gap: 20px;
+        flex-direction: column;
+        margin-right: 20px;
     }
 }
