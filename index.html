@@ -9,6 +9,53 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
+    <div id="players-creation">
+        <div id="text">
+            <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50">
+                <path d="M 20 20 L 80 80" stroke="#40ffd0" stroke-width="20" stroke-linecap="round"/>
+                <path d="M 80 20 L 20 80" stroke="#40ffd0" stroke-width="20" stroke-linecap="round"/>
+            </svg>
+            
+            Tic Tac Toe
+            
+            <svg id="o-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="50">
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#FFA400" stroke-width="20"/>
+            </svg>
+        </div>
+
+        <form>
+            <div id="choose">
+                <span>Enter Players names</span>
+
+                <div id="players-names">
+                    <input id="player1-name" placeholder="Player 1"/>
+                    <input id="player2-name" placeholder="Player 2"/>
+                </div>
+
+                <span>Choose mark for Player 1</span>
+
+                <div id="choose-mark">
+                    <div id="choose-x" class="selected" onclick="toggleIcon('x')">
+                        <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="100">
+                            <path d="M 20 20 L 80 80" stroke="#40ffd0" stroke-width="20" stroke-linecap="round"/>
+                            <path d="M 80 20 L 20 80" stroke="#40ffd0" stroke-width="20" stroke-linecap="round"/>
+                        </svg>
+                        
+                        
+                    </div>
+
+                    <div id="choose-o" onclick="toggleIcon('o')">
+                        <svg id="o-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="100">
+                            <circle cx="50" cy="50" r="35" fill="none" stroke="#FFA400" stroke-width="20"/>
+                        </svg>                                     
+                    </div>
+                </div>
+            </div>
+
+            <button id="start" type="submit">Start Game</button>
+        </form>
+    </div>
+
     <div id="main">
         <div id="header">
             <div class="images">
@@ -32,7 +79,10 @@
 
             <div id="turn">X Turn</div>
 
-            <button id="restart">Restart</button>
+            <div id="header-buttons">
+                <button id="restart">Restart</button>
+                <button id="quit">Quit</button>
+            </div>
         </div>
 
         <div id="main-board">
@@ -53,6 +103,8 @@
                 <div id="o-score">0</div>
             </div>
         </div>
+
+        
     </div>
 </body>
 </html>
