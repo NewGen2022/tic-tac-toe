@@ -1,21 +1,22 @@
 let gameOver = false;
 
+function toggleIcon(selectedIcon) {
+    if (selectedIcon === 'x') {
+        document.getElementById('choose-x').classList.add('selected');
+        document.getElementById('choose-o').classList.remove('selected');
+    } else {
+        document.getElementById('choose-o').classList.add('selected');
+        document.getElementById('choose-x').classList.remove('selected');
+    }
+}
 
-const X = `<svg id="x-icon" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="0.5in" height="0.5in" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 2.33333 2.33333" xmlns:xlink="http://www.w3.org/1999/xlink">
-<defs>
- <style type="text/css">
-   .fil0 {fill:#022A32}
- </style>
-</defs>
-<g id="Layer_x0020_1">
- <metadata id="CorelCorpID_0Corel-Layer"></metadata>
- <path class="fil0" d="M1.78195 2.01984c-0.0637795,0 -0.123575,-0.0246772 -0.168386,-0.0695l-0.446902 -0.44687 -0.446886 0.446886c-0.0448268,0.0448307 -0.104626,0.0695 -0.168406,0.0695 -0.0637795,0 -0.123591,-0.0246772 -0.168402,-0.0695 -0.0928465,-0.0928583 -0.0928465,-0.243941 0,-0.336803l0.446902 -0.446886 -0.446902 -0.446886c-0.044811,-0.0448268 -0.0695,-0.104634 -0.0695,-0.168402 0,-0.0637717 0.024689,-0.123575 0.0695,-0.168402 0.044811,-0.044815 0.104622,-0.0695 0.168386,-0.0695 0.0637795,0 0.123594,0.024685 0.168406,0.0695l0.446902 0.446886 0.446894 -0.446886c0.044811,-0.044815 0.10461,-0.0695 0.168406,-0.0695 0.0637795,0 0.123575,0.024685 0.168386,0.0695 0.0928622,0.0928583 0.0928622,0.243933 0,0.336787l-0.446882 0.446902 0.446886 0.446886c0.0928622,0.0928622 0.0928622,0.243945 0,0.336803 -0.0448268,0.044815 -0.104638,0.0694843 -0.168402,0.0694843z" id="id_102" style="fill: rgb(64, 255, 208);"></path>
-</g>
+const X = `<svg id="x-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="70" height="70">
+<path d="M 20 20 L 80 80" stroke="#40ffd0" stroke-width="20" stroke-linecap="round"/>
+<path d="M 80 20 L 20 80" stroke="#40ffd0" stroke-width="20" stroke-linecap="round"/>
 </svg>`
 
-const O = `<svg id="o-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="0.4in" height="0.4in">
-<circle cx="50" cy="50" r="40" fill="none" stroke="#FFA400" stroke-width="20"/>
-<!-- #40FFD0 -->
+const O = `<svg id="o-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="70" height="70">
+<circle cx="50" cy="50" r="35" fill="none" stroke="#FFA400" stroke-width="20"/>
 </svg>`
 
 const Board = () => {
@@ -130,13 +131,22 @@ const Players = (() => {
 
     // Function to create players
     function createPlayers() {
+        const selectedMark = document.querySelector('#choose-mark .selected')
+
         for (let i = 0; i < 2; i++) {
-            const playerName = prompt(`Enter player ${i + 1} name`);
-            const playerMark = i === 0 ? prompt(`Enter mark for Player ${playerName} (X or O)`).toUpperCase() : players[0].mark === 'X' ? 'O' : 'X';
+            const playerNameHtml = document.getElementById(`player${i+1}-name`)
+            const playerName = playerNameHtml.value === '' ? i + 1 : playerNameHtml.value;
+            const playerMark = i === 0 ? (selectedMark.id === 'choose-x' ? 'X' : 'O') : (players[0].mark === 'X' ? 'O' : 'X');
+
             players.push(createPlayer(playerName, playerMark));
         }
+        console.log(players)
         currentPlayerIndex = players[1].mark === 'X' ? 1 : 0;
         return players;
+    }
+
+    function deletePlayers(){
+        players = []
     }
 
     // Function to switch the current player
@@ -150,7 +160,7 @@ const Players = (() => {
         return players[currentPlayerIndex];
     }
 
-    return { createPlayers, switchPlayer, getCurrentPlayer };
+    return { createPlayers, switchPlayer, getCurrentPlayer, deletePlayers };
 })();
 
 const Game = (() => {
@@ -160,9 +170,16 @@ const Game = (() => {
     let turnDisplay;
     let restartButton;
 
+    const createPlayersForm = document.getElementById('players-creation')
+    const mainContainer = document.getElementById('main')
+
+
     function start() {
+        createPlayersForm.style.display = 'none'
+        mainContainer.style.display = 'flex'
+        Players.deletePlayers()
         gameBoard = Board();
-        Players.createPlayers(); // const [ player1, player2 ] = 
+        Players.createPlayers();
         currentPlayer = Players.getCurrentPlayer();
         cells = document.querySelectorAll('.cell');
         turnDisplay = document.getElementById('turn');
@@ -174,7 +191,7 @@ const Game = (() => {
             cell.addEventListener('click', handleCellClick);
         });
 
-        restartButton.addEventListener('click', restartGame);
+        restartButton.addEventListener('click', startNewRound);
     }
 
     function handleCellClick() {
@@ -185,7 +202,7 @@ const Game = (() => {
         }
     }
 
-    function restartGame() {
+    function startNewRound() {
         // Remove event listeners from cells
         cells.forEach(cell => {
             cell.removeEventListener('click', handleCellClick);
@@ -212,7 +229,21 @@ const Game = (() => {
         });
     }
 
-    return { start };
+    function quitGame(){
+        createPlayersForm.style.display = 'flex'
+        mainContainer.style.display = 'none'
+    }
+
+    return { start, quitGame };
 })();
 
-Game.start();
+const startGame = document.getElementById('start')
+startGame.addEventListener('click', function(event) {
+    event.preventDefault();
+    Game.start();
+});
+
+const quitGame = document.getElementById('quit')
+quitGame.addEventListener('click', function() {
+    Game.quitGame();
+});
