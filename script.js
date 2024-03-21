@@ -101,13 +101,13 @@ const Board = () => {
                 incrementPlayerScore(currentPlayer);
                 return;
             }
+        }
 
-            if(checkTie()){
-                gameOver = true;
-                paintWinCells([0, 1, 2, 3, 4, 5, 6, 7, 8], backgroundColor='#515151');
-                incrementPlayerScore('tie');
-                return;
-            }
+        if(checkTie() && !gameOver){
+            gameOver = true;
+            paintWinCells([0, 1, 2, 3, 4, 5, 6, 7, 8], backgroundColor='#515151');
+            incrementPlayerScore('tie');
+            return;
         }
     }
 
@@ -169,18 +169,24 @@ const Game = (() => {
     const createPlayersForm = document.getElementById('players-creation');
     const mainContainer = document.getElementById('main');
 
+    const playerXName = document.getElementById('player-x-name') 
+    const playerOName = document.getElementById('player-o-name') 
+
     function start() {
         createPlayersForm.style.display = 'none';
         mainContainer.style.display = 'flex';
         Players.deletePlayers();
         gameBoard = Board();
-        Players.createPlayers();
+        const [player1, player2] = Players.createPlayers();
         currentPlayer = Players.getCurrentPlayer();
         cells = document.querySelectorAll('.cell');
         turnDisplay = document.getElementById('turn');
         restartButton = document.getElementById('restart');
 
         turnDisplay.innerHTML = `${currentPlayer.mark} (player ${currentPlayer.name}) Turn`;
+
+        playerXName.innerHTML = `Name: ${player1.name}` 
+        playerOName.innerHTML = `Name: ${player2.name}` 
 
         cells.forEach(cell => {
             cell.addEventListener('click', handleCellClick);
