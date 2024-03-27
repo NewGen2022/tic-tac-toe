@@ -14,6 +14,7 @@
   <h2>App preview</h2>
 </div>
 
-![Here you can see app preview]()
+![Here you can see app user registration preview](https://github.com/NewGen2022/tic-tac-toe/blob/main/app-preview-1.jpg)
+![And here you can see game preview](https://github.com/NewGen2022/tic-tac-toe/blob/main/app-preview-2.jpg)
 
 **This site was built using [GitHub Pages](https://pages.github.com/).**
